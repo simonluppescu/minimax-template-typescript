@@ -37,11 +37,20 @@ class State {
   applyMove(move: Move): void {}
 
   /**
-   * TODO: Implement this method
+   * TODO: Implement this method:
    * This method determines if the state is at a "game over", in other words, if a player
    * has won or the game is in a drawn state and cannot continue.
    */
   isTerminal(): boolean {}
+
+  /**
+   * TODO: Implement this method:
+   * This method returns a score that represents a numerical measurement of the favorability
+   * of a position from the point of view of the maximizing player. For example, in
+   * Tic Tac Toe, a won state for the maximizing player, (let's say X), can return 1; a draw
+   * will return 0; and a won state for O returns -1.
+   */
+  computeHeuristic(): number {}
 
   getNextPlayerIndex(): number {
     return (this.currentPlayerIndex + 1) % this.players.length;
