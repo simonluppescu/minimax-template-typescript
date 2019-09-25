@@ -4,5 +4,8 @@
     "watch": true,
     "lib": ["dom", "es2017"],
     "outDir": "src/js"
-  }
+  },
+  "include": [
+    "src/ts"
+  ]
 }
