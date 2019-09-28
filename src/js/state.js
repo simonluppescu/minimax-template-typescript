@@ -9,6 +9,9 @@ var State = /** @class */ (function () {
         this.players = [new player_1.default("human"), new player_1.default("computer")];
         this.currentPlayerIndex = 0;
     }
+    State.prototype.isAiPlayer = function () {
+        return this.currentPlayerIndex === 1;
+    };
     /**
      * TODO: Implement this method:
      * Return a list of possible moves based on the current player.
@@ -43,8 +46,14 @@ var State = /** @class */ (function () {
      * will return 0; and a won state for O returns -1.
      */
     State.prototype.computeHeuristic = function () { };
+    /**
+     * TODO: Optionally implement this method:
+     * Print the state in a readable way. Can be used for debugging purposes.
+     */
+    State.prototype.print = function () { };
     State.prototype.getNextPlayerIndex = function () {
         return (this.currentPlayerIndex + 1) % this.players.length;
     };
     return State;
 }());
+exports.default = State;
