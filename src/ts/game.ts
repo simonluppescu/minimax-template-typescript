@@ -13,22 +13,39 @@ class Game {
   /**
    * TODO: Implement this method:
    * This is the main entry point for the program. It should accept user input that
-   * symbolizes a move and then respond with an AI move.
+   * represents a move and then respond with an AI move.
    */
   play(): void {
     const readline = ReadLine.createInterface({
       input: process.stdin,
       output: process.stdout
     });
+    this.state.print();
 
     readline.setPrompt("Enter your move> ");
-    // this.state.print();
-
     readline.on("line", (line: string) => {
-      // TODO: Process line into Move
-      const move = new Move(this.state.players[0]);
+      const move = null; // TODO: Process line into Move
 
       this.state.applyMove(move);
+      this.state.print();
+
+      if (this.state.isTerminal()) {
+        console.log("Game over!");
+        readline.close();
+        return;
+      }
+
+      const aiMove = this.getBestMove(this.state);
+      console.log(`AI moves: ${aiMove}.`);
+      this.state.applyMove(aiMove);
+      this.state.print();
+
+      if (this.state.isTerminal()) {
+        console.log("Game over!");
+        readline.close();
+      } else {
+        readline.prompt();
+      }
     });
   }
 
