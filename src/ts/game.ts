@@ -11,7 +11,7 @@ class Game {
   }
 
   /**
-   * TODO: Implement this method:
+   * TODO: Implement the rest of this method:
    * This is the main entry point for the program. It should accept user input that
    * represents a move and then respond with an AI move.
    */

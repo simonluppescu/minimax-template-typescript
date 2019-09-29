@@ -2,15 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ReadLine = require("readline");
 var state_1 = require("./state");
-var move_1 = require("./move");
 var Game = /** @class */ (function () {
     function Game() {
         this.state = new state_1.default();
     }
     /**
-     * TODO: Implement this method:
+     * TODO: Implement the rest of this method:
      * This is the main entry point for the program. It should accept user input that
-     * symbolizes a move and then respond with an AI move.
+     * represents a move and then respond with an AI move.
      */
     Game.prototype.play = function () {
         var _this = this;
@@ -18,12 +17,28 @@ var Game = /** @class */ (function () {
             input: process.stdin,
             output: process.stdout
         });
+        this.state.print();
         readline.setPrompt("Enter your move> ");
-        // this.state.print();
         readline.on("line", function (line) {
-            // TODO: Process line into Move
-            var move = new move_1.default(_this.state.players[0]);
+            var move = null; // TODO: Process line into Move
             _this.state.applyMove(move);
+            _this.state.print();
+            if (_this.state.isTerminal()) {
+                console.log("Game over!");
+                readline.close();
+                return;
+            }
+            var aiMove = _this.getBestMove(_this.state);
+            console.log("AI moves: " + aiMove + ".");
+            _this.state.applyMove(aiMove);
+            _this.state.print();
+            if (_this.state.isTerminal()) {
+                console.log("Game over!");
+                readline.close();
+            }
+            else {
+                readline.prompt();
+            }
         });
     };
     Game.prototype.getBestMove = function (state) {
